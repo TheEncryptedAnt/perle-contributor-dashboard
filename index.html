@@ -6,88 +6,98 @@
 <title>Perle Contribution Console</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0;}
-
+*{margin:0;padding:0;box-sizing:border-box;}
 body{
-  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-  overflow:hidden;
+  font-family:Inter,system-ui,sans-serif;
   height:100vh;
-  background:#0a0f1c;
-  color:white;
+  overflow:hidden;
+  background:#050816;
+  color:#fff;
 }
 
-/* Animated Mesh Background */
-.bg{
+/* ===== Animated Grid Background ===== */
+.grid{
   position:fixed;
-  width:100%;
-  height:100%;
-  background:
-  radial-gradient(circle at 20% 30%, #2563eb55, transparent 40%),
-  radial-gradient(circle at 80% 70%, #7c3aed55, transparent 40%),
-  radial-gradient(circle at 50% 50%, #0ea5e955, transparent 50%);
-  animation: moveBg 15s ease-in-out infinite alternate;
+  width:200%;
+  height:200%;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size:40px 40px;
+  animation: moveGrid 30s linear infinite;
+  z-index:-2;
+}
+
+@keyframes moveGrid{
+  from{transform:translate(0,0);}
+  to{transform:translate(-200px,-200px);}
+}
+
+/* Glow light */
+.glow{
+  position:fixed;
+  width:800px;
+  height:800px;
+  background:radial-gradient(circle,#3b82f630,transparent 60%);
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
   z-index:-1;
 }
 
-@keyframes moveBg{
-  0%{transform:scale(1) translate(0,0);}
-  100%{transform:scale(1.2) translate(-3%,3%);}
-}
+/* ===== Layout ===== */
 
-/* Wrapper */
 .wrapper{
-  width:600px;
-  margin:auto;
-  position:relative;
+  width:700px;
+  position:absolute;
   top:50%;
-  transform:translateY(-50%);
-  overflow:hidden;
+  left:50%;
+  transform:translate(-50%,-50%);
 }
 
-/* Progress bar */
+/* Progress */
 .progress{
-  height:4px;
-  background:#1f2937;
-  border-radius:5px;
-  margin-bottom:25px;
+  height:6px;
+  background:#111827;
+  border-radius:6px;
+  margin-bottom:30px;
+  overflow:hidden;
 }
 
 .progress-bar{
   height:100%;
-  width:20%;
+  width:0%;
   background:linear-gradient(90deg,#3b82f6,#8b5cf6);
-  border-radius:5px;
   transition:0.5s ease;
 }
 
-/* Slide container */
-.slider{
+/* Card Container */
+.cards{
   display:flex;
-  width:500%;
   transition:0.6s cubic-bezier(.4,0,.2,1);
 }
 
-/* Card */
 .card{
-  width:100%;
-  padding:50px;
-  background:rgba(17,24,39,0.8);
-  backdrop-filter:blur(20px);
-  border-radius:24px;
-  box-shadow:0 40px 80px rgba(0,0,0,0.7);
-  margin-right:30px;
+  min-width:100%;
+  padding:70px;
+  background:#0f172a;
+  border-radius:30px;
+  box-shadow:
+    0 60px 150px rgba(0,0,0,0.9),
+    inset 0 1px 0 rgba(255,255,255,0.05);
 }
 
-h1{font-size:30px;margin-bottom:10px;}
-h2{font-size:24px;margin-bottom:20px;}
-p{color:#9ca3af;line-height:1.6;}
+h1{font-size:34px;margin-bottom:15px;}
+h2{font-size:28px;margin-bottom:25px;}
+p{color:#9ca3af;line-height:1.7;}
 
 button{
-  margin-top:30px;
-  padding:14px 28px;
+  margin-top:35px;
+  padding:16px 36px;
   border:none;
-  border-radius:14px;
+  border-radius:18px;
   font-weight:600;
+  font-size:14px;
   background:linear-gradient(135deg,#3b82f6,#8b5cf6);
   color:white;
   cursor:pointer;
@@ -95,28 +105,27 @@ button{
 }
 
 button:hover{
-  transform:translateY(-3px);
-  box-shadow:0 15px 30px rgba(59,130,246,0.4);
+  transform:translateY(-5px);
+  box-shadow:0 20px 50px rgba(59,130,246,0.5);
 }
 
-/* Quest Blocks */
 .block{
-  background:rgba(31,41,55,0.8);
-  padding:18px;
-  border-radius:16px;
-  margin-bottom:15px;
-  transition:0.3s;
+  background:#111827;
+  padding:22px;
+  border-radius:20px;
+  margin-bottom:18px;
 }
 
-.block:hover{
-  transform:translateX(5px);
-  background:rgba(55,65,81,0.9);
+/* Navigation */
+.nav{
+  display:flex;
+  justify-content:space-between;
+  margin-top:30px;
 }
 
-/* Footer */
 .footer{
   position:fixed;
-  bottom:20px;
+  bottom:25px;
   width:100%;
   text-align:center;
   font-size:13px;
@@ -132,7 +141,8 @@ button:hover{
 
 <body>
 
-<div class="bg"></div>
+<div class="grid"></div>
+<div class="glow"></div>
 
 <div class="wrapper">
 
@@ -140,18 +150,24 @@ button:hover{
   <div class="progress-bar" id="progressBar"></div>
 </div>
 
-<div class="slider" id="slider">
+<div class="cards" id="cards">
 
   <div class="card">
     <h1>Perle Contribution Console</h1>
     <p>Understand quests. Contribute properly. Grow naturally.</p>
-    <button onclick="nextStep()">Start</button>
+    <div class="nav">
+      <div></div>
+      <button onclick="next()">Start</button>
+    </div>
   </div>
 
   <div class="card">
     <h2>What is Perle?</h2>
-    <p>Users complete structured AI tasks through official quests.</p>
-    <button onclick="nextStep()">Next</button>
+    <p>Users complete structured AI tasks through official website quests.</p>
+    <div class="nav">
+      <button onclick="prev()">Back</button>
+      <button onclick="next()">Next</button>
+    </div>
   </div>
 
   <div class="card">
@@ -159,7 +175,10 @@ button:hover{
     <div class="block"><b>Wallet Setup</b><p>Connect wallet + add SOL.</p></div>
     <div class="block"><b>Marketplace</b><p>Select active quest.</p></div>
     <div class="block"><b>Submit</b><p>Check earnings section.</p></div>
-    <button onclick="nextStep()">Next</button>
+    <div class="nav">
+      <button onclick="prev()">Back</button>
+      <button onclick="next()">Next</button>
+    </div>
   </div>
 
   <div class="card">
@@ -167,13 +186,20 @@ button:hover{
     <div class="block"><b>Explorer</b></div>
     <div class="block"><b>Navigator</b></div>
     <div class="block"><b>Voyager</b></div>
-    <button onclick="nextStep()">Next</button>
+    <div class="nav">
+      <button onclick="prev()">Back</button>
+      <button onclick="next()">Next</button>
+    </div>
   </div>
 
   <div class="card">
     <h2>Official Updates</h2>
     <div class="block"><a href="https://discord.gg/joinperle" target="_blank">Join Discord</a></div>
     <div class="block"><a href="https://x.com/PerleLabs" target="_blank">Visit X</a></div>
+    <div class="nav">
+      <button onclick="prev()">Back</button>
+      <div></div>
+    </div>
   </div>
 
 </div>
@@ -185,14 +211,30 @@ Built by <a href="https://x.com/YOUR_X_HANDLE" target="_blank">The Encrypted Ant
 
 <script>
 let current=0;
-const slider=document.getElementById("slider");
+const total=5;
+const cards=document.getElementById("cards");
 const progress=document.getElementById("progressBar");
 
-function nextStep(){
-  current++;
-  slider.style.transform="translateX(-"+(current*100)+"%)";
-  progress.style.width=((current+1)*20)+"%";
+function update(){
+  cards.style.transform="translateX(-"+(current*100)+"%)";
+  progress.style.width=((current+1)/total*100)+"%";
 }
+
+function next(){
+  if(current<total-1){
+    current++;
+    update();
+  }
+}
+
+function prev(){
+  if(current>0){
+    current--;
+    update();
+  }
+}
+
+update();
 </script>
 
 </body>
