@@ -1,74 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Perle Contributor Dashboard</title>
-<link rel="stylesheet" href="style.css">
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perle Contributor Starter Kit</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<header>
-  <div>
-    <h1>Perle Contributor Dashboard</h1>
-    <p class="subtitle">Personal contribution tracker</p>
+  <div class="container">
+
+    <header>
+      <h1>Perle Contributor Starter Kit</h1>
+      <p class="tagline">Community onboarding guide</p>
+      <p class="disclaimer">Unofficial resource — Built by Encrypted Ant</p>
+    </header>
+
+    <section class="card">
+      <button class="accordion">I am new here</button>
+      <div class="panel">
+        <ul>
+          <li>React to the role message to get PERLE EXPLORER</li>
+          <li>Join your regional channel if needed</li>
+          <li>Check #important-links for verified resources</li>
+          <li>Visit the official Perle website platform</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card">
+      <button class="accordion">Community Role Progression</button>
+      <div class="panel">
+        <h3>PERLE EXPLORER</h3>
+        <p>Entry point for new members.</p>
+
+        <h3>PERLE NAVIGATOR</h3>
+        <p>Active members who consistently participate and add value.</p>
+        <p>Mid-level rank based on contribution & commitment.</p>
+
+        <h3>PERLE VOYAGER</h3>
+        <p>Core community members and early supporters.</p>
+        <p>Elite tier selected through team scouting.</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <button class="accordion">How to become Navigator</button>
+      <div class="panel">
+        <ul>
+          <li>Complete tasks on the Perle platform</li>
+          <li>Maintain consistent participation</li>
+          <li>Help other members in Discord</li>
+          <li>Add meaningful value in discussions</li>
+        </ul>
+        <p class="note">Promotions are reviewed within the first 5 days of each month.</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <button class="accordion">How to contribute properly</button>
+      <div class="panel">
+        <ul>
+          <li>Read task instructions carefully</li>
+          <li>Focus on accuracy over speed</li>
+          <li>Avoid spam</li>
+          <li>Share thoughtful insights on X</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card">
+      <button class="accordion">Where to check official updates</button>
+      <div class="panel">
+        <ul>
+          <li>#announcements</li>
+          <li>#important-links</li>
+          <li>Promotions channel</li>
+        </ul>
+      </div>
+    </section>
+
+    <footer>
+      <p>Built by Encrypted Ant 🐜</p>
+    </footer>
+
   </div>
-  <div class="header-right">
-    <span class="ant-brand">Encrypted Ant 🐜</span>
-    <button id="themeToggle">🌙</button>
-  </div>
-</header>
 
-<main>
-
-<section class="card">
-  <h2>Add Entry</h2>
-  <input type="date" id="date">
-  <input type="number" id="tasks" placeholder="Tasks Completed">
-  <input type="number" id="accuracy" placeholder="Accuracy %">
-  <button onclick="addEntry()">Add Entry</button>
-</section>
-
-<section class="stats-grid">
-  <div class="stat-card">
-    <h3>Total Tasks</h3>
-    <p id="totalTasks">0</p>
-  </div>
-  <div class="stat-card">
-    <h3>Current Streak</h3>
-    <p id="streak">0</p>
-  </div>
-  <div class="stat-card">
-    <h3>Average Accuracy</h3>
-    <p id="avgAccuracy">0%</p>
-  </div>
-</section>
-
-<section class="card">
-  <h3>Streak Progress</h3>
-  <div class="progress-container">
-    <div class="progress-bar" id="streakBar"></div>
-  </div>
-</section>
-
-<section class="card">
-  <h3>Performance Chart</h3>
-  <canvas id="taskChart"></canvas>
-</section>
-
-<section class="card ant-mode" id="antMode">
-  🐜 Ant Mode Activated — Consistency Strong!
-</section>
-
-</main>
-
-<footer>
-  Built for the Perle community by Encrypted Ant 🐜  
-  <br>
-  Unofficial tool. Not affiliated with Perle Labs.
-</footer>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
