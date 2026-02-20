@@ -76,7 +76,6 @@ body::before {
     0 50px 100px rgba(0,0,0,0.6),
     inset 0 0 40px rgba(255,255,255,0.04);
   animation: float 6s ease-in-out infinite;
-  transition: opacity 0.35s ease, transform 0.35s ease;
 }
 
 @keyframes float {
@@ -84,7 +83,6 @@ body::before {
   50% { transform: translateY(-12px); }
 }
 
-/* Progress */
 .progress {
   height: 6px;
   background: rgba(255,255,255,0.1);
@@ -100,7 +98,6 @@ body::before {
   transition: width 0.4s ease;
 }
 
-/* Typography */
 h1 {
   font-size: 36px;
   margin-bottom: 28px;
@@ -125,7 +122,6 @@ li {
   font-size: 16px;
 }
 
-/* Buttons */
 .buttons {
   display: flex;
   justify-content: space-between;
@@ -150,12 +146,6 @@ button:hover {
   box-shadow: 0 15px 30px rgba(0,0,0,0.4);
 }
 
-button:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
-/* Footer */
 .footer {
   position: absolute;
   bottom: 20px;
@@ -168,7 +158,6 @@ button:disabled {
   text-decoration: none;
 }
 
-/* Fade Animation */
 .fade {
   animation: fadeIn 0.4s ease;
 }
@@ -283,6 +272,8 @@ let currentStep = 0;
 function renderStep() {
   const step = steps[currentStep];
   const contentDiv = document.getElementById("content");
+  const backBtn = document.getElementById("backBtn");
+  const nextBtn = document.getElementById("nextBtn");
 
   contentDiv.classList.remove("fade");
   void contentDiv.offsetWidth;
@@ -290,10 +281,21 @@ function renderStep() {
 
   contentDiv.innerHTML = `<h1>${step.title}</h1>${step.content}`;
 
-  document.getElementById("backBtn").disabled = currentStep === 0;
+  /* Hide back on home */
+  if (currentStep === 0) {
+    backBtn.style.visibility = "hidden";
+    nextBtn.textContent = "Start Journey";
+  } else {
+    backBtn.style.visibility = "visible";
+    nextBtn.textContent = "Next";
+  }
 
-  document.getElementById("nextBtn").style.display =
-    currentStep === steps.length - 1 ? "none" : "inline-block";
+  /* Hide next on last */
+  if (currentStep === steps.length - 1) {
+    nextBtn.style.display = "none";
+  } else {
+    nextBtn.style.display = "inline-block";
+  }
 
   document.getElementById("progressBar").style.width =
     ((currentStep + 1) / steps.length) * 100 + "%";
