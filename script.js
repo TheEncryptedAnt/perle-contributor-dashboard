@@ -2,9 +2,13 @@ let current = 1;
 const total = 5;
 
 function nextStep() {
-  document.getElementById("step" + current).classList.remove("active");
+  const currentCard = document.getElementById("step" + current);
+  currentCard.classList.remove("active");
+
   current++;
+
   if (current <= total) {
-    document.getElementById("step" + current).classList.add("active");
+    const nextCard = document.getElementById("step" + current);
+    nextCard.classList.add("active");
   }
 }
