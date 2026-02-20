@@ -6,81 +6,108 @@
 <title>Perle Contribution Console</title>
 
 <style>
+* { box-sizing: border-box; }
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background: #0b0f19;
-  color: #e5e7eb;
+  background: linear-gradient(-45deg,#0f172a,#111827,#0b1220,#1e293b);
+  background-size: 400% 400%;
+  animation: gradientMove 15s ease infinite;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  color: #e5e7eb;
+}
+
+@keyframes gradientMove {
+  0% {background-position:0% 50%}
+  50% {background-position:100% 50%}
+  100% {background-position:0% 50%}
 }
 
 .wrapper {
-  width: 540px;
+  width: 580px;
+  position: relative;
 }
 
 .card {
-  background: #111827;
-  border-radius: 18px;
-  padding: 45px;
-  box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+  position: absolute;
+  width: 100%;
+  background: rgba(17,24,39,0.8);
+  backdrop-filter: blur(20px);
+  border-radius: 22px;
+  padding: 50px;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.6);
   text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s cubic-bezier(.4,0,.2,1);
 }
 
-.hidden {
-  display: none;
+.card.active {
+  opacity: 1;
+  transform: translateY(0);
+  position: relative;
 }
 
-h1 { font-size: 28px; margin-bottom: 12px; }
-h2 { font-size: 22px; margin-bottom: 20px; }
+h1 { font-size: 30px; margin-bottom: 12px; }
+h2 { font-size: 24px; margin-bottom: 20px; }
 
 p { color: #9ca3af; line-height: 1.6; }
 
 button {
-  margin-top: 25px;
-  padding: 12px 24px;
-  border-radius: 10px;
+  margin-top: 30px;
+  padding: 14px 28px;
+  border-radius: 12px;
   border: none;
-  background: #2563eb;
+  background: linear-gradient(135deg,#3b82f6,#6366f1);
   color: white;
   font-weight: 600;
+  font-size: 14px;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-button:hover { background: #1d4ed8; }
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(59,130,246,0.4);
+}
 
-.quest-block {
-  background: #1f2937;
-  padding: 15px;
-  border-radius: 12px;
+.quest-block,
+.role-box {
+  background: rgba(31,41,55,0.8);
+  padding: 18px;
+  border-radius: 14px;
   margin-bottom: 15px;
   text-align: left;
+  transition: 0.3s ease;
 }
 
-.role-box {
-  background: #1f2937;
-  padding: 15px;
-  border-radius: 12px;
-  margin-bottom: 15px;
+.quest-block:hover,
+.role-box:hover {
+  background: rgba(55,65,81,0.9);
 }
 
 .link-btn {
   display: block;
-  margin: 12px 0;
-  padding: 12px;
-  background: #1f2937;
-  border-radius: 10px;
+  margin: 14px 0;
+  padding: 14px;
+  background: rgba(31,41,55,0.8);
+  border-radius: 12px;
   text-decoration: none;
   color: #e5e7eb;
+  transition: 0.3s ease;
 }
 
-.link-btn:hover { background: #374151; }
+.link-btn:hover {
+  background: rgba(55,65,81,1);
+}
 
 .footer {
   position: fixed;
-  bottom: 15px;
+  bottom: 18px;
   width: 100%;
   text-align: center;
   font-size: 13px;
@@ -88,8 +115,9 @@ button:hover { background: #1d4ed8; }
 }
 
 .footer a {
-  color: #3b82f6;
+  color: #60a5fa;
   text-decoration: none;
+  font-weight: 500;
 }
 </style>
 </head>
@@ -98,94 +126,94 @@ button:hover { background: #1d4ed8; }
 
 <div class="wrapper">
 
-  <div class="card" id="step1">
-    <h1>Perle Contribution Console</h1>
-    <p>Understand quests. Contribute properly. Grow naturally.</p>
-    <button onclick="nextStep()">Start</button>
+<div class="card active" id="step1">
+  <h1>Perle Contribution Console</h1>
+  <p>Understand quests. Contribute properly. Grow naturally.</p>
+  <button onclick="nextStep()">Start</button>
+</div>
+
+<div class="card" id="step2">
+  <h2>What is Perle?</h2>
+  <p>Perle is a platform where users complete structured AI tasks through official website quests.</p>
+  <button onclick="nextStep()">Next</button>
+</div>
+
+<div class="card" id="step3">
+  <h2>How to Start Quests</h2>
+
+  <div class="quest-block">
+    <b>Wallet Setup</b>
+    <p>Connect wallet and add small SOL for transaction fees.</p>
   </div>
 
-  <div class="card hidden" id="step2">
-    <h2>What is Perle?</h2>
-    <p>Perle is a platform where users complete structured AI tasks through official website quests.</p>
-    <button onclick="nextStep()">Next</button>
+  <div class="quest-block">
+    <b>Marketplace</b>
+    <p>Select active quest from marketplace section.</p>
   </div>
 
-  <div class="card hidden" id="step3">
-    <h2>How to Start Quests</h2>
-
-    <div class="quest-block">
-      <b>Step 1 — Wallet Setup</b>
-      <p>Visit official website, connect wallet and add small SOL for fees.</p>
-    </div>
-
-    <div class="quest-block">
-      <b>Step 2 — Marketplace</b>
-      <p>Open Marketplace and select active quest.</p>
-    </div>
-
-    <div class="quest-block">
-      <b>Step 3 — Follow Instructions</b>
-      <p>Read carefully. Accuracy matters.</p>
-    </div>
-
-    <div class="quest-block">
-      <b>Step 4 — Submit & Verify</b>
-      <p>Check Earnings / Badge section after completion.</p>
-    </div>
-
-    <button onclick="nextStep()">Next</button>
+  <div class="quest-block">
+    <b>Follow Instructions</b>
+    <p>Read carefully. Accuracy matters.</p>
   </div>
 
-  <div class="card hidden" id="step4">
-    <h2>Community Roles</h2>
-
-    <div class="role-box">
-      <b>Explorer</b>
-      <p>Entry role.</p>
-    </div>
-
-    <div class="role-box">
-      <b>Navigator</b>
-      <p>Consistent contributor.</p>
-    </div>
-
-    <div class="role-box">
-      <b>Voyager</b>
-      <p>Elite tier.</p>
-    </div>
-
-    <button onclick="nextStep()">Next</button>
+  <div class="quest-block">
+    <b>Submit & Verify</b>
+    <p>Check Earnings / Badge section after completion.</p>
   </div>
 
-  <div class="card hidden" id="step5">
-    <h2>Official Updates</h2>
+  <button onclick="nextStep()">Next</button>
+</div>
 
-    <a href="https://discord.gg/joinperle" target="_blank" class="link-btn">
-      Join Official Discord
-    </a>
+<div class="card" id="step4">
+  <h2>Community Roles</h2>
 
-    <a href="https://x.com/PerleLabs" target="_blank" class="link-btn">
-      Visit Official X
-    </a>
-
-    <p>Check #announcements and #important-links inside Discord.</p>
+  <div class="role-box">
+    <b>Explorer</b>
+    <p>Entry role for new members.</p>
   </div>
+
+  <div class="role-box">
+    <b>Navigator</b>
+    <p>Consistent contributor.</p>
+  </div>
+
+  <div class="role-box">
+    <b>Voyager</b>
+    <p>Elite tier selected by team.</p>
+  </div>
+
+  <button onclick="nextStep()">Next</button>
+</div>
+
+<div class="card" id="step5">
+  <h2>Official Updates</h2>
+
+  <a href="https://discord.gg/joinperle" target="_blank" class="link-btn">
+    Join Official Discord
+  </a>
+
+  <a href="https://x.com/PerleLabs" target="_blank" class="link-btn">
+    Visit Official X
+  </a>
+
+  <p>Check #announcements and #important-links inside Discord.</p>
+</div>
 
 </div>
 
 <div class="footer">
-  Built by <a href="https://x.com/TheEncryptedAnt" target="_blank">
-  The Encrypted Ant 🐜</a>
+Built by <a href="https://x.com/YOUR_X_HANDLE" target="_blank">
+The Encrypted Ant 🐜</a>
 </div>
 
 <script>
 let current = 1;
 
 function nextStep() {
-  document.getElementById("step" + current).classList.add("hidden");
+  document.getElementById("step"+current).classList.remove("active");
   current++;
-  if (current <= 5) {
-    document.getElementById("step" + current).classList.remove("hidden");
+  if(current <= 5){
+    document.getElementById("step"+current).classList.add("active");
   }
 }
 </script>
