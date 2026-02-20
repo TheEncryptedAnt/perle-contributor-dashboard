@@ -1,45 +1,30 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: #0f0f17;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
   color: white;
-  overflow: hidden;
-}
-
-.bg-animation {
-  position: fixed;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle at 30% 30%, #3b82f6, transparent),
-              radial-gradient(circle at 70% 70%, #9333ea, transparent);
-  animation: moveBg 12s infinite alternate ease-in-out;
-  opacity: 0.15;
-}
-
-@keyframes moveBg {
-  0% { transform: translate(-10%, -10%); }
-  100% { transform: translate(10%, 10%); }
-}
-
-.app {
-  height: 100vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100vh;
+}
+
+.container {
+  position: relative;
+  width: 550px;
 }
 
 .card {
   position: absolute;
-  width: 600px;
+  width: 100%;
   padding: 40px;
-  border-radius: 15px;
+  border-radius: 16px;
   background: rgba(255,255,255,0.05);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 0 30px rgba(0,0,0,0.4);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 0 40px rgba(0,0,0,0.4);
   opacity: 0;
   transform: translateY(20px);
-  transition: all 0.4s ease;
+  transition: 0.4s ease;
   text-align: center;
 }
 
@@ -48,7 +33,7 @@ body {
   transform: translateY(0);
 }
 
-button, .link-btn {
+button {
   margin-top: 20px;
   padding: 10px 20px;
   border-radius: 8px;
@@ -57,25 +42,21 @@ button, .link-btn {
   font-weight: 600;
   background: linear-gradient(to right, #3b82f6, #9333ea);
   color: white;
-  text-decoration: none;
-  display: inline-block;
 }
 
-.roles {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 20px;
-}
-
-.role {
-  padding: 10px 15px;
+.link-btn {
+  display: block;
+  margin: 10px 0;
+  padding: 10px;
   border-radius: 8px;
+  text-decoration: none;
   background: rgba(255,255,255,0.1);
+  color: white;
 }
 
 .footer {
-  position: absolute;
-  bottom: 20px;
+  position: fixed;
+  bottom: 15px;
   font-size: 14px;
   opacity: 0.7;
 }
