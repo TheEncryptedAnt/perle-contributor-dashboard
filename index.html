@@ -6,203 +6,220 @@
 <title>Perle Labs Contributor Console</title>
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Inter, system-ui, sans-serif;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Inter,system-ui,sans-serif;
 }
 
-body {
-  height: 100vh;
-  background: #0f172a;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  position: relative;
+body{
+height:100vh;
+background:#0f172a;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
+color:white;
+position:relative;
 }
 
 /* Animated Grid */
-body::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
-  background-size: 50px 50px;
-  animation: gridMove 25s linear infinite;
+body::before{
+content:"";
+position:absolute;
+inset:0;
+background-image:
+linear-gradient(rgba(255,255,255,0.05) 1px,transparent 1px),
+linear-gradient(90deg,rgba(255,255,255,0.05) 1px,transparent 1px);
+background-size:50px 50px;
+animation:gridMove 30s linear infinite;
 }
 
-@keyframes gridMove {
-  from { transform: translate(0,0); }
-  to { transform: translate(50px,50px); }
+@keyframes gridMove{
+from{transform:translate(0,0);}
+to{transform:translate(50px,50px);}
 }
 
-/* Glow Blobs */
-.glow1, .glow2 {
-  position: absolute;
-  width: 700px;
-  height: 700px;
-  border-radius: 50%;
-  filter: blur(140px);
-  opacity: 0.4;
+/* Glow Background */
+.glow1,.glow2{
+position:absolute;
+width:700px;
+height:700px;
+border-radius:50%;
+filter:blur(140px);
+opacity:0.4;
 }
 
-.glow1 {
-  background: #00c6ff;
-  top: -250px;
-  left: -250px;
+.glow1{
+background:#00c6ff;
+top:-250px;
+left:-250px;
 }
 
-.glow2 {
-  background: #d946ef;
-  bottom: -250px;
-  right: -250px;
+.glow2{
+background:#d946ef;
+bottom:-250px;
+right:-250px;
 }
 
-/* Card */
-.card {
-  position: relative;
-  width: 860px;
-  max-width: 95%;
-  padding: 70px;
-  background: rgba(255,255,255,0.06);
-  backdrop-filter: blur(30px);
-  border-radius: 28px;
-  box-shadow:
-    0 50px 100px rgba(0,0,0,0.6),
-    inset 0 0 40px rgba(255,255,255,0.04);
-  animation: float 6s ease-in-out infinite;
+/* Main Card */
+.card{
+position:relative;
+width:950px;
+max-width:95%;
+padding:80px;
+background:rgba(255,255,255,0.06);
+backdrop-filter:blur(30px);
+border-radius:28px;
+box-shadow:0 50px 100px rgba(0,0,0,0.6),
+inset 0 0 40px rgba(255,255,255,0.05);
+animation:float 6s ease-in-out infinite;
 }
 
-@keyframes float {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
+@keyframes float{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-12px);}
 }
 
-.progress {
-  height: 6px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 10px;
-  overflow: hidden;
-  margin-bottom: 35px;
+/* Progress */
+.progress{
+height:6px;
+background:rgba(255,255,255,0.1);
+border-radius:10px;
+overflow:hidden;
+margin-bottom:40px;
 }
 
-.progress-bar {
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg,#00c6ff,#d946ef);
-  transition: width 0.4s ease;
+.progress-bar{
+height:100%;
+width:0%;
+background:linear-gradient(90deg,#00c6ff,#d946ef);
+transition:width 0.4s ease;
 }
 
-h1 {
-  font-size: 38px;
-  margin-bottom: 28px;
-  font-weight: 700;
+/* Typography */
+h1{
+font-size:40px;
+margin-bottom:30px;
 }
 
-p {
-  font-size: 17px;
-  line-height: 1.8;
-  opacity: 0.9;
-  margin-bottom: 22px;
+p{
+font-size:17px;
+line-height:1.8;
+opacity:0.9;
+margin-bottom:22px;
 }
 
-ul {
-  margin-bottom: 25px;
-  padding-left: 22px;
-  opacity: 0.9;
+ul{
+padding-left:22px;
+margin-bottom:22px;
 }
 
-li {
-  margin-bottom: 10px;
-  font-size: 16px;
-}
-
-/* Role Cards */
-.role-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-  margin-top: 20px;
-}
-
-.role-card {
-  background: rgba(255,255,255,0.05);
-  padding: 20px;
-  border-radius: 18px;
-  transition: all 0.3s ease;
-}
-
-.role-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 15px 40px rgba(0,0,0,0.4);
-}
-
-.explorer {
-  border: 1px solid rgba(0,198,255,0.4);
-}
-
-.navigator {
-  border: 1px solid rgba(217,70,239,0.5);
-}
-
-.voyager {
-  border: 1px solid rgba(0,198,255,0.4);
-}
-
-.role-card h3 {
-  margin-bottom: 10px;
+li{
+margin-bottom:10px;
+font-size:16px;
 }
 
 /* Buttons */
-.buttons {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 30px;
+.buttons{
+display:flex;
+justify-content:space-between;
+margin-top:35px;
 }
 
-button {
-  padding: 12px 28px;
-  border-radius: 30px;
-  border: none;
-  cursor: pointer;
-  background: linear-gradient(90deg,#00c6ff,#d946ef);
-  color: white;
-  font-weight: 600;
-  font-size: 14px;
-  letter-spacing: 0.5px;
-  transition: all 0.25s ease;
+button{
+padding:12px 28px;
+border-radius:30px;
+border:none;
+cursor:pointer;
+background:linear-gradient(90deg,#00c6ff,#d946ef);
+color:white;
+font-weight:600;
+font-size:14px;
+transition:0.25s;
 }
 
-button:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+button:hover{
+transform:translateY(-4px);
+box-shadow:0 15px 30px rgba(0,0,0,0.4);
+}
+
+/* Premium Role Cards */
+.role-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:22px;
+margin-top:30px;
+}
+
+.role-card{
+position:relative;
+padding:24px;
+border-radius:20px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(20px);
+transition:0.35s;
+overflow:hidden;
+}
+
+.role-card::before{
+content:"";
+position:absolute;
+inset:0;
+border-radius:20px;
+padding:1px;
+background:linear-gradient(135deg,#00c6ff,#d946ef);
+-webkit-mask:
+linear-gradient(#000 0 0) content-box,
+linear-gradient(#000 0 0);
+-webkit-mask-composite:xor;
+mask-composite:exclude;
+}
+
+.role-card:hover{
+transform:translateY(-8px);
+box-shadow:0 25px 60px rgba(0,0,0,0.45);
+}
+
+.role-title{
+font-weight:700;
+font-size:18px;
+margin-bottom:12px;
+}
+
+.role-desc{
+font-size:15px;
+opacity:0.9;
+margin-bottom:12px;
+}
+
+.role-earn{
+font-size:14px;
+opacity:0.75;
+line-height:1.6;
 }
 
 /* Footer */
-.footer {
-  position: absolute;
-  bottom: 20px;
-  font-size: 14px;
-  opacity: 0.7;
+.footer{
+position:absolute;
+bottom:20px;
+font-size:14px;
+opacity:0.7;
 }
 
-.footer a {
-  color: #d946ef;
-  text-decoration: none;
+.footer a{
+color:#d946ef;
+text-decoration:none;
 }
 
-.fade {
-  animation: fadeIn 0.4s ease;
+.fade{
+animation:fadeIn 0.4s ease;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(10px);}
+to{opacity:1;transform:translateY(0);}
 }
 </style>
 </head>
@@ -213,105 +230,113 @@ button:hover {
 <div class="glow2"></div>
 
 <div class="card">
-  <div class="progress">
-    <div class="progress-bar" id="progressBar"></div>
-  </div>
+<div class="progress">
+<div class="progress-bar" id="progressBar"></div>
+</div>
 
-  <div id="content" class="fade"></div>
+<div id="content" class="fade"></div>
 
-  <div class="buttons">
-    <button id="backBtn" onclick="prevStep()">Back</button>
-    <button id="nextBtn" onclick="nextStep()">Next</button>
-  </div>
+<div class="buttons">
+<button id="backBtn" onclick="prevStep()">Back</button>
+<button id="nextBtn" onclick="nextStep()">Next</button>
+</div>
 </div>
 
 <div class="footer">
-  Built by <a href="https://x.com/" target="_blank">The Encrypted Ant</a>
+Built by <a href="https://x.com/" target="_blank">The Encrypted Ant</a>
 </div>
 
 <script>
+
 const steps = [
 
 {
-title: "Perle Labs Contributor Console",
-content: `
+title:"Perle Labs Contributor Console",
+content:`
 <p>Navigate quests, earn roles, and contribute with clarity inside the Perle Labs ecosystem.</p>
-<p>This interactive guide walks you through how Perle Labs works, how quests are completed, how roles are earned, and how you can contribute meaningfully.</p>
+<p>This interactive guide explains how quests work, how roles are assigned, and how to contribute properly.</p>
 `
 },
 
 {
-title: "What is Perle Labs?",
-content: `
+title:"What is Perle Labs?",
+content:`
 <p>Perle Labs is a structured AI task platform where contributors complete verified on-chain quests through the official website.</p>
 <ul>
-<li>Wallet connection is required</li>
-<li>Small SOL may be needed for transaction fees</li>
-<li>Each quest contains clear task instructions</li>
-<li>Completion is tracked in the Earnings / Badge section</li>
+<li>Connect your Solana wallet</li>
+<li>Maintain small SOL for transaction fees</li>
+<li>Select active quests in Marketplace</li>
+<li>Verify completion inside Earnings / Badge section</li>
 </ul>
 `
 },
 
 {
-title: "How to Start Quests",
-content: `
+title:"How to Start Quests",
+content:`
 <ul>
-<li>Visit the official website (check Discord #important-links)</li>
-<li>Connect your Solana wallet securely</li>
-<li>Add a small amount of SOL for transaction fees</li>
-<li>Open Marketplace and select an active quest</li>
+<li>Visit official website (check Discord #important-links)</li>
+<li>Connect wallet securely</li>
+<li>Add small SOL for fees</li>
+<li>Open Marketplace and select quest</li>
 <li>Follow instructions carefully</li>
-<li>Verify submission in Earnings / Badge section</li>
+<li>Check Earnings section after submission</li>
 </ul>
 `
 },
 
 {
-title: "Community Roles — Perle Labs",
-content: `
+title:"Community Roles — Perle Labs",
+content:`
 <p>Perle Labs recognizes contributors through structured role progression.</p>
 
 <div class="role-grid">
-  <div class="role-card explorer">
-    <h3>Explorer</h3>
-    <p>Entry-level role for new members beginning their contribution journey.</p>
-  </div>
 
-  <div class="role-card navigator">
-    <h3>Navigator</h3>
-    <p>Consistent contributors who complete quests accurately and assist others.</p>
-  </div>
-
-  <div class="role-card voyager">
-    <h3>Voyager</h3>
-    <p>High-quality contributors with verified performance and ecosystem impact.</p>
-  </div>
+<div class="role-card">
+<div class="role-title">Explorer</div>
+<div class="role-desc">
+Initial access role inside the Discord server.
+</div>
+<div class="role-earn">
+<strong>How to earn:</strong><br>
+Go to <b>#regional-and-perle-roles</b> channel in Discord and react to the Explorer message. Role is assigned automatically.
+</div>
 </div>
 
-<p style="margin-top:20px;font-size:14px;opacity:0.7;">
-Promotions are reviewed during the first week of each month.
+<div class="role-card">
+<div class="role-title">Navigator</div>
+<div class="role-desc">
+Recognition role for active and helpful contributors.
+</div>
+<div class="role-earn">
+<strong>How to earn:</strong><br>
+Stay active in Discord discussions, assist members, and complete quests when available. Granted after team review.
+</div>
+</div>
+
+<div class="role-card">
+<div class="role-title">Voyager</div>
+<div class="role-desc">
+Advanced contributor recognition role.
+</div>
+<div class="role-earn">
+<strong>How to earn:</strong><br>
+Demonstrate meaningful ecosystem value and high-quality participation over time. Granted through internal evaluation.
+</div>
+</div>
+
+</div>
+
+<p style="margin-top:25px;font-size:14px;opacity:0.65;">
+Role promotions are reviewed periodically based on contribution quality.
 </p>
 `
 },
 
 {
-title: "Ways to Contribute",
-content: `
-<ul>
-<li>Complete official website quests</li>
-<li>Help new members inside Discord</li>
-<li>Share accurate ecosystem content on X</li>
-<li>Create helpful guides or threads</li>
-<li>Maintain high-quality discussions</li>
-</ul>
-`
-},
-
-{
-title: "Stay Connected",
-content: `
-<p>Follow official channels for the latest updates:</p>
+title:"Stay Connected",
+content:`
+<p>Follow official channels for updates:</p>
 <div style="display:flex;gap:15px;margin-top:15px;">
 <a href="https://discord.gg/joinperle" target="_blank"><button>Join Discord</button></a>
 <a href="https://x.com/PerleLabs" target="_blank"><button>Visit X</button></a>
@@ -321,53 +346,54 @@ content: `
 
 ];
 
-let currentStep = 0;
+let currentStep=0;
 
-function renderStep() {
-  const step = steps[currentStep];
-  const contentDiv = document.getElementById("content");
-  const backBtn = document.getElementById("backBtn");
-  const nextBtn = document.getElementById("nextBtn");
+function renderStep(){
+const step=steps[currentStep];
+const contentDiv=document.getElementById("content");
+const backBtn=document.getElementById("backBtn");
+const nextBtn=document.getElementById("nextBtn");
 
-  contentDiv.classList.remove("fade");
-  void contentDiv.offsetWidth;
-  contentDiv.classList.add("fade");
+contentDiv.classList.remove("fade");
+void contentDiv.offsetWidth;
+contentDiv.classList.add("fade");
 
-  contentDiv.innerHTML = `<h1>${step.title}</h1>${step.content}`;
+contentDiv.innerHTML=`<h1>${step.title}</h1>${step.content}`;
 
-  if (currentStep === 0) {
-    backBtn.style.visibility = "hidden";
-    nextBtn.textContent = "Start Journey";
-  } else {
-    backBtn.style.visibility = "visible";
-    nextBtn.textContent = "Next";
-  }
-
-  if (currentStep === steps.length - 1) {
-    nextBtn.style.display = "none";
-  } else {
-    nextBtn.style.display = "inline-block";
-  }
-
-  document.getElementById("progressBar").style.width =
-    ((currentStep + 1) / steps.length) * 100 + "%";
+if(currentStep===0){
+backBtn.style.visibility="hidden";
+nextBtn.textContent="Start Journey";
+}else{
+backBtn.style.visibility="visible";
+nextBtn.textContent="Next";
 }
 
-function nextStep() {
-  if (currentStep < steps.length - 1) {
-    currentStep++;
-    renderStep();
-  }
+if(currentStep===steps.length-1){
+nextBtn.style.display="none";
+}else{
+nextBtn.style.display="inline-block";
 }
 
-function prevStep() {
-  if (currentStep > 0) {
-    currentStep--;
-    renderStep();
-  }
+document.getElementById("progressBar").style.width=
+((currentStep+1)/steps.length)*100+"%";
+}
+
+function nextStep(){
+if(currentStep<steps.length-1){
+currentStep++;
+renderStep();
+}
+}
+
+function prevStep(){
+if(currentStep>0){
+currentStep--;
+renderStep();
+}
 }
 
 renderStep();
+
 </script>
 
 </body>
