@@ -10,7 +10,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Inter, sans-serif;
+  font-family: Inter, system-ui, sans-serif;
 }
 
 body {
@@ -21,9 +21,10 @@ body {
   align-items: center;
   justify-content: center;
   color: white;
+  position: relative;
 }
 
-/* Animated Grid Background */
+/* Animated Grid */
 body::before {
   content: "";
   position: absolute;
@@ -31,110 +32,65 @@ body::before {
   background-image:
     linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
-  background-size: 40px 40px;
-  animation: gridMove 20s linear infinite;
+  background-size: 50px 50px;
+  animation: gridMove 25s linear infinite;
 }
 
 @keyframes gridMove {
   from { transform: translate(0,0); }
-  to { transform: translate(40px,40px); }
+  to { transform: translate(50px,50px); }
 }
 
-/* Glow blobs */
+/* Glow Blobs */
 .glow1, .glow2 {
   position: absolute;
-  width: 600px;
-  height: 600px;
+  width: 700px;
+  height: 700px;
   border-radius: 50%;
-  filter: blur(120px);
-  opacity: 0.5;
+  filter: blur(140px);
+  opacity: 0.4;
 }
 
 .glow1 {
   background: #00c6ff;
-  top: -200px;
-  left: -200px;
+  top: -250px;
+  left: -250px;
 }
 
 .glow2 {
   background: #d946ef;
-  bottom: -200px;
-  right: -200px;
+  bottom: -250px;
+  right: -250px;
 }
 
 /* Card */
 .card {
   position: relative;
-  width: 600px;
-  padding: 50px;
-  background: rgba(255,255,255,0.05);
-  backdrop-filter: blur(20px);
-  border-radius: 20px;
-  box-shadow: 0 0 40px rgba(0,0,0,0.5);
+  width: 820px;
+  max-width: 95%;
+  padding: 70px;
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(30px);
+  border-radius: 28px;
+  box-shadow:
+    0 50px 100px rgba(0,0,0,0.6),
+    inset 0 0 40px rgba(255,255,255,0.04);
   animation: float 6s ease-in-out infinite;
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  transition: opacity 0.35s ease, transform 0.35s ease;
 }
 
 @keyframes float {
   0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  50% { transform: translateY(-12px); }
 }
 
-h1 {
-  font-size: 28px;
-  margin-bottom: 20px;
-}
-
-p {
-  font-size: 15px;
-  line-height: 1.6;
-  opacity: 0.85;
-  margin-bottom: 20px;
-}
-
-ul {
-  margin-bottom: 20px;
-  padding-left: 20px;
-  opacity: 0.85;
-}
-
-li {
-  margin-bottom: 8px;
-}
-
-.buttons {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-}
-
-button {
-  padding: 10px 20px;
-  border-radius: 20px;
-  border: none;
-  cursor: pointer;
-  background: linear-gradient(45deg,#00c6ff,#d946ef);
-  color: white;
-  font-weight: 600;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.4);
-}
-
-button:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
+/* Progress */
 .progress {
-  height: 5px;
+  height: 6px;
   background: rgba(255,255,255,0.1);
   border-radius: 10px;
   overflow: hidden;
-  margin-bottom: 20px;
+  margin-bottom: 35px;
 }
 
 .progress-bar {
@@ -144,6 +100,62 @@ button:disabled {
   transition: width 0.4s ease;
 }
 
+/* Typography */
+h1 {
+  font-size: 36px;
+  margin-bottom: 28px;
+  font-weight: 700;
+}
+
+p {
+  font-size: 17px;
+  line-height: 1.8;
+  opacity: 0.9;
+  margin-bottom: 22px;
+}
+
+ul {
+  margin-bottom: 25px;
+  padding-left: 22px;
+  opacity: 0.9;
+}
+
+li {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+/* Buttons */
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+button {
+  padding: 12px 28px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(90deg,#00c6ff,#d946ef);
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  transition: all 0.25s ease;
+}
+
+button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Footer */
 .footer {
   position: absolute;
   bottom: 20px;
@@ -155,8 +167,19 @@ button:disabled {
   color: #d946ef;
   text-decoration: none;
 }
+
+/* Fade Animation */
+.fade {
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 </style>
 </head>
+
 <body>
 
 <div class="glow1"></div>
@@ -167,7 +190,7 @@ button:disabled {
     <div class="progress-bar" id="progressBar"></div>
   </div>
 
-  <div id="content"></div>
+  <div id="content" class="fade"></div>
 
   <div class="buttons">
     <button id="backBtn" onclick="prevStep()">Back</button>
@@ -181,100 +204,113 @@ button:disabled {
 
 <script>
 const steps = [
+
 {
 title: "Perle Contributor Console",
 content: `
 <p>Navigate quests, earn roles, and contribute with clarity inside the Perle ecosystem.</p>
-<p>This interactive guide explains how Perle works, how quests are completed, how roles are earned, and how to contribute properly.</p>
+<p>This interactive guide walks you through how Perle works, how quests are completed, how roles are earned, and how you can contribute meaningfully.</p>
 `
 },
+
 {
 title: "What is Perle?",
 content: `
 <p>Perle is a structured AI task platform where contributors complete verified on-chain quests through the official website.</p>
 <ul>
-<li>Wallet connection required</li>
-<li>Small SOL may be needed for fees</li>
-<li>Clear task instructions</li>
-<li>Earnings & badge tracking</li>
+<li>Wallet connection is required</li>
+<li>Small SOL may be needed for transaction fees</li>
+<li>Each quest contains clear task instructions</li>
+<li>Completion is tracked in the Earnings / Badge section</li>
 </ul>
 `
 },
+
 {
 title: "How to Start Quests",
 content: `
 <ul>
-<li>Visit official website (check Discord #important-links)</li>
-<li>Connect Solana wallet</li>
-<li>Add small SOL for fees</li>
-<li>Open Marketplace & select quest</li>
+<li>Visit the official website (check Discord #important-links)</li>
+<li>Connect your Solana wallet securely</li>
+<li>Add a small amount of SOL for transaction fees</li>
+<li>Open Marketplace and select an active quest</li>
 <li>Follow instructions carefully</li>
-<li>Verify in Earnings / Badge section</li>
+<li>Verify submission in Earnings / Badge section</li>
 </ul>
 `
 },
+
 {
 title: "Community Roles",
 content: `
 <ul>
-<li><b>Explorer</b> — Entry role</li>
-<li><b>Navigator</b> — Consistent contributor</li>
-<li><b>Voyager</b> — High-quality verified contributor</li>
+<li><b>Explorer</b> — Entry-level role for new members</li>
+<li><b>Navigator</b> — Consistent contributor completing quests accurately</li>
+<li><b>Voyager</b> — High-quality contributor with verified performance</li>
 </ul>
-<p>Promotions reviewed during first week of each month.</p>
+<p>Promotions are reviewed during the first week of each month.</p>
 `
 },
+
 {
 title: "Ways to Contribute",
 content: `
 <ul>
-<li>Complete official quests</li>
-<li>Help members in Discord</li>
-<li>Share accurate content on X</li>
-<li>Create guides & threads</li>
-<li>Maintain quality discussions</li>
+<li>Complete official website quests</li>
+<li>Help new members inside Discord</li>
+<li>Share accurate ecosystem content on X</li>
+<li>Create helpful guides or threads</li>
+<li>Maintain high-quality discussions</li>
 </ul>
 `
 },
+
 {
 title: "Stay Connected",
 content: `
-<p>Follow official channels for updates:</p>
-<div style="display:flex;gap:10px;margin-top:10px;">
+<p>Follow official channels for the latest updates:</p>
+<div style="display:flex;gap:15px;margin-top:15px;">
 <a href="https://discord.gg/joinperle" target="_blank"><button>Join Discord</button></a>
 <a href="https://x.com/PerleLabs" target="_blank"><button>Visit X</button></a>
 </div>
 `
 }
+
 ];
 
 let currentStep = 0;
 
 function renderStep() {
-const step = steps[currentStep];
-document.getElementById("content").innerHTML =
-`<h1>${step.title}</h1>${step.content}`;
+  const step = steps[currentStep];
+  const contentDiv = document.getElementById("content");
 
-document.getElementById("backBtn").disabled = currentStep === 0;
-document.getElementById("nextBtn").style.display =
-currentStep === steps.length - 1 ? "none" : "inline-block";
+  contentDiv.classList.remove("fade");
+  void contentDiv.offsetWidth;
+  contentDiv.classList.add("fade");
 
-document.getElementById("progressBar").style.width =
-((currentStep + 1) / steps.length) * 100 + "%";
+  contentDiv.innerHTML = `<h1>${step.title}</h1>${step.content}`;
+
+  document.getElementById("backBtn").disabled = currentStep === 0;
+
+  document.getElementById("nextBtn").style.display =
+    currentStep === steps.length - 1 ? "none" : "inline-block";
+
+  document.getElementById("progressBar").style.width =
+    ((currentStep + 1) / steps.length) * 100 + "%";
 }
 
 function nextStep() {
-if (currentStep < steps.length - 1) {
-currentStep++;
-renderStep();
-}
+  if (currentStep < steps.length - 1) {
+    currentStep++;
+    renderStep();
+  }
 }
 
 function prevStep() {
-if (currentStep > 0) {
-currentStep--;
-renderStep();
-}
+  if (currentStep > 0) {
+    currentStep--;
+    renderStep();
+  }
 }
 
 renderStep();
