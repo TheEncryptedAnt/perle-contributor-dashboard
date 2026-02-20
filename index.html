@@ -1,67 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Perle Contributor Starter Kit</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perle Contribution Console</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<div class="bg-animation"></div>
+
 <div class="app">
 
-  <div class="progress-bar">
-    <div class="progress"></div>
+  <div class="card active" id="step1">
+    <h1>Perle Contribution Console</h1>
+    <p>Understand quests. Contribute properly. Grow naturally.</p>
+    <button class="primary" onclick="nextStep()">Start</button>
   </div>
 
-  <div class="step active">
-    <h1>Welcome to Perle</h1>
-    <p>This is an unofficial onboarding guide.</p>
-    <p class="tag">Built by Encrypted Ant 🐜</p>
+  <div class="card" id="step2">
+    <h2>What is Perle?</h2>
+    <p>Perle is a platform where humans complete structured tasks to improve AI systems.</p>
+    <button onclick="nextStep()">Next</button>
   </div>
 
-  <div class="step">
+  <div class="card" id="step3">
+    <h2>How Quests Work</h2>
+    <ul>
+      <li>Go to official website</li>
+      <li>Connect wallet</li>
+      <li>Add small SOL for transaction fees</li>
+      <li>Open Marketplace</li>
+      <li>Select active quest</li>
+      <li>Read instructions carefully</li>
+      <li>Complete tasks accurately</li>
+      <li>Check Earnings / Badge section</li>
+    </ul>
+    <button onclick="nextStep()">Next</button>
+  </div>
+
+  <div class="card" id="step4">
     <h2>Community Roles</h2>
     <div class="roles">
-      <div class="role explorer">PERLE EXPLORER</div>
-      <div class="role navigator">PERLE NAVIGATOR</div>
-      <div class="role voyager">PERLE VOYAGER</div>
+      <div class="role">Explorer</div>
+      <div class="role">Navigator</div>
+      <div class="role">Voyager</div>
     </div>
-    <p>Roles are awarded based on contribution & consistency.</p>
-  </div>
-
-  <div class="step">
-    <h2>How to Contribute</h2>
-    <ul>
-      <li>Complete tasks on the platform</li>
-      <li>Be consistent</li>
-      <li>Help members</li>
-      <li>Add meaningful insights</li>
-    </ul>
-  </div>
-
-  <div class="step">
-    <h2>How to Become Navigator</h2>
-    <ul>
-      <li>Maintain monthly activity</li>
-      <li>Support community discussions</li>
-      <li>Show long-term commitment</li>
-    </ul>
     <p>Promotions reviewed within first 5 days of each month.</p>
+    <button onclick="nextStep()">Next</button>
   </div>
 
-  <div class="step">
-    <h2>Where to Check Updates</h2>
-    <ul>
-      <li>#announcements</li>
-      <li>#important-links</li>
-      <li>Promotions channel</li>
-    </ul>
+  <div class="card" id="step5">
+    <h2>Official Updates</h2>
+    <div class="buttons">
+      <a href="https://discord.gg/joinperle" target="_blank" class="link-btn">Join Official Discord</a>
+      <a href="https://x.com/PerleLabs" target="_blank" class="link-btn">Visit Official X</a>
+    </div>
+    <p>Check #announcements and #important-links inside Discord.</p>
+    <button onclick="nextStep()">Finish</button>
   </div>
 
-  <div class="navigation">
-    <button id="prev">Back</button>
-    <button id="next">Next</button>
+  <div class="footer">
+    Built by 
+    <a href="https://x.com/TheEncryptedAnt" target="_blank">
+      The Encrypted Ant 🐜
+    </a>
   </div>
 
 </div>
