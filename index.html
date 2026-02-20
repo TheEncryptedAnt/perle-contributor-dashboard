@@ -6,215 +6,192 @@
 <title>Perle Contribution Console</title>
 
 <style>
-* { box-sizing: border-box; }
+*{box-sizing:border-box;margin:0;padding:0;}
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background: linear-gradient(-45deg,#0f172a,#111827,#0b1220,#1e293b);
-  background-size: 400% 400%;
-  animation: gradientMove 15s ease infinite;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  color: #e5e7eb;
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  overflow:hidden;
+  height:100vh;
+  background:#0a0f1c;
+  color:white;
 }
 
-@keyframes gradientMove {
-  0% {background-position:0% 50%}
-  50% {background-position:100% 50%}
-  100% {background-position:0% 50%}
+/* Animated Mesh Background */
+.bg{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:
+  radial-gradient(circle at 20% 30%, #2563eb55, transparent 40%),
+  radial-gradient(circle at 80% 70%, #7c3aed55, transparent 40%),
+  radial-gradient(circle at 50% 50%, #0ea5e955, transparent 50%);
+  animation: moveBg 15s ease-in-out infinite alternate;
+  z-index:-1;
 }
 
-.wrapper {
-  width: 580px;
-  position: relative;
+@keyframes moveBg{
+  0%{transform:scale(1) translate(0,0);}
+  100%{transform:scale(1.2) translate(-3%,3%);}
 }
 
-.card {
-  position: absolute;
-  width: 100%;
-  background: rgba(17,24,39,0.8);
-  backdrop-filter: blur(20px);
-  border-radius: 22px;
-  padding: 50px;
-  box-shadow: 0 40px 80px rgba(0,0,0,0.6);
-  text-align: center;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.6s cubic-bezier(.4,0,.2,1);
+/* Wrapper */
+.wrapper{
+  width:600px;
+  margin:auto;
+  position:relative;
+  top:50%;
+  transform:translateY(-50%);
+  overflow:hidden;
 }
 
-.card.active {
-  opacity: 1;
-  transform: translateY(0);
-  position: relative;
+/* Progress bar */
+.progress{
+  height:4px;
+  background:#1f2937;
+  border-radius:5px;
+  margin-bottom:25px;
 }
 
-h1 { font-size: 30px; margin-bottom: 12px; }
-h2 { font-size: 24px; margin-bottom: 20px; }
-
-p { color: #9ca3af; line-height: 1.6; }
-
-button {
-  margin-top: 30px;
-  padding: 14px 28px;
-  border-radius: 12px;
-  border: none;
-  background: linear-gradient(135deg,#3b82f6,#6366f1);
-  color: white;
-  font-weight: 600;
-  font-size: 14px;
-  cursor: pointer;
-  transition: all 0.3s ease;
+.progress-bar{
+  height:100%;
+  width:20%;
+  background:linear-gradient(90deg,#3b82f6,#8b5cf6);
+  border-radius:5px;
+  transition:0.5s ease;
 }
 
-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(59,130,246,0.4);
+/* Slide container */
+.slider{
+  display:flex;
+  width:500%;
+  transition:0.6s cubic-bezier(.4,0,.2,1);
 }
 
-.quest-block,
-.role-box {
-  background: rgba(31,41,55,0.8);
-  padding: 18px;
-  border-radius: 14px;
-  margin-bottom: 15px;
-  text-align: left;
-  transition: 0.3s ease;
+/* Card */
+.card{
+  width:100%;
+  padding:50px;
+  background:rgba(17,24,39,0.8);
+  backdrop-filter:blur(20px);
+  border-radius:24px;
+  box-shadow:0 40px 80px rgba(0,0,0,0.7);
+  margin-right:30px;
 }
 
-.quest-block:hover,
-.role-box:hover {
-  background: rgba(55,65,81,0.9);
+h1{font-size:30px;margin-bottom:10px;}
+h2{font-size:24px;margin-bottom:20px;}
+p{color:#9ca3af;line-height:1.6;}
+
+button{
+  margin-top:30px;
+  padding:14px 28px;
+  border:none;
+  border-radius:14px;
+  font-weight:600;
+  background:linear-gradient(135deg,#3b82f6,#8b5cf6);
+  color:white;
+  cursor:pointer;
+  transition:0.3s;
 }
 
-.link-btn {
-  display: block;
-  margin: 14px 0;
-  padding: 14px;
-  background: rgba(31,41,55,0.8);
-  border-radius: 12px;
-  text-decoration: none;
-  color: #e5e7eb;
-  transition: 0.3s ease;
+button:hover{
+  transform:translateY(-3px);
+  box-shadow:0 15px 30px rgba(59,130,246,0.4);
 }
 
-.link-btn:hover {
-  background: rgba(55,65,81,1);
+/* Quest Blocks */
+.block{
+  background:rgba(31,41,55,0.8);
+  padding:18px;
+  border-radius:16px;
+  margin-bottom:15px;
+  transition:0.3s;
 }
 
-.footer {
-  position: fixed;
-  bottom: 18px;
-  width: 100%;
-  text-align: center;
-  font-size: 13px;
-  color: #6b7280;
+.block:hover{
+  transform:translateX(5px);
+  background:rgba(55,65,81,0.9);
 }
 
-.footer a {
-  color: #60a5fa;
-  text-decoration: none;
-  font-weight: 500;
+/* Footer */
+.footer{
+  position:fixed;
+  bottom:20px;
+  width:100%;
+  text-align:center;
+  font-size:13px;
+  color:#6b7280;
+}
+
+.footer a{
+  color:#60a5fa;
+  text-decoration:none;
 }
 </style>
 </head>
 
 <body>
 
+<div class="bg"></div>
+
 <div class="wrapper">
 
-<div class="card active" id="step1">
-  <h1>Perle Contribution Console</h1>
-  <p>Understand quests. Contribute properly. Grow naturally.</p>
-  <button onclick="nextStep()">Start</button>
+<div class="progress">
+  <div class="progress-bar" id="progressBar"></div>
 </div>
 
-<div class="card" id="step2">
-  <h2>What is Perle?</h2>
-  <p>Perle is a platform where users complete structured AI tasks through official website quests.</p>
-  <button onclick="nextStep()">Next</button>
+<div class="slider" id="slider">
+
+  <div class="card">
+    <h1>Perle Contribution Console</h1>
+    <p>Understand quests. Contribute properly. Grow naturally.</p>
+    <button onclick="nextStep()">Start</button>
+  </div>
+
+  <div class="card">
+    <h2>What is Perle?</h2>
+    <p>Users complete structured AI tasks through official quests.</p>
+    <button onclick="nextStep()">Next</button>
+  </div>
+
+  <div class="card">
+    <h2>How to Start Quests</h2>
+    <div class="block"><b>Wallet Setup</b><p>Connect wallet + add SOL.</p></div>
+    <div class="block"><b>Marketplace</b><p>Select active quest.</p></div>
+    <div class="block"><b>Submit</b><p>Check earnings section.</p></div>
+    <button onclick="nextStep()">Next</button>
+  </div>
+
+  <div class="card">
+    <h2>Community Roles</h2>
+    <div class="block"><b>Explorer</b></div>
+    <div class="block"><b>Navigator</b></div>
+    <div class="block"><b>Voyager</b></div>
+    <button onclick="nextStep()">Next</button>
+  </div>
+
+  <div class="card">
+    <h2>Official Updates</h2>
+    <div class="block"><a href="https://discord.gg/joinperle" target="_blank">Join Discord</a></div>
+    <div class="block"><a href="https://x.com/PerleLabs" target="_blank">Visit X</a></div>
+  </div>
+
 </div>
-
-<div class="card" id="step3">
-  <h2>How to Start Quests</h2>
-
-  <div class="quest-block">
-    <b>Wallet Setup</b>
-    <p>Connect wallet and add small SOL for transaction fees.</p>
-  </div>
-
-  <div class="quest-block">
-    <b>Marketplace</b>
-    <p>Select active quest from marketplace section.</p>
-  </div>
-
-  <div class="quest-block">
-    <b>Follow Instructions</b>
-    <p>Read carefully. Accuracy matters.</p>
-  </div>
-
-  <div class="quest-block">
-    <b>Submit & Verify</b>
-    <p>Check Earnings / Badge section after completion.</p>
-  </div>
-
-  <button onclick="nextStep()">Next</button>
-</div>
-
-<div class="card" id="step4">
-  <h2>Community Roles</h2>
-
-  <div class="role-box">
-    <b>Explorer</b>
-    <p>Entry role for new members.</p>
-  </div>
-
-  <div class="role-box">
-    <b>Navigator</b>
-    <p>Consistent contributor.</p>
-  </div>
-
-  <div class="role-box">
-    <b>Voyager</b>
-    <p>Elite tier selected by team.</p>
-  </div>
-
-  <button onclick="nextStep()">Next</button>
-</div>
-
-<div class="card" id="step5">
-  <h2>Official Updates</h2>
-
-  <a href="https://discord.gg/joinperle" target="_blank" class="link-btn">
-    Join Official Discord
-  </a>
-
-  <a href="https://x.com/PerleLabs" target="_blank" class="link-btn">
-    Visit Official X
-  </a>
-
-  <p>Check #announcements and #important-links inside Discord.</p>
-</div>
-
 </div>
 
 <div class="footer">
-Built by <a href="https://x.com/YOUR_X_HANDLE" target="_blank">
-The Encrypted Ant 🐜</a>
+Built by <a href="https://x.com/YOUR_X_HANDLE" target="_blank">The Encrypted Ant 🐜</a>
 </div>
 
 <script>
-let current = 1;
+let current=0;
+const slider=document.getElementById("slider");
+const progress=document.getElementById("progressBar");
 
-function nextStep() {
-  document.getElementById("step"+current).classList.remove("active");
+function nextStep(){
   current++;
-  if(current <= 5){
-    document.getElementById("step"+current).classList.add("active");
-  }
+  slider.style.transform="translateX(-"+(current*100)+"%)";
+  progress.style.width=((current+1)*20)+"%";
 }
 </script>
 
