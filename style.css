@@ -1,83 +1,14 @@
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background: #0e0e11;
-  color: #e4e4e7;
-}
+const accordions = document.querySelectorAll(".accordion");
 
-.container {
-  max-width: 800px;
-  margin: 50px auto;
-  padding: 20px;
-}
+accordions.forEach(acc => {
+  acc.addEventListener("click", function () {
+    this.classList.toggle("active");
+    const panel = this.nextElementSibling;
 
-header {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-h1 {
-  font-size: 28px;
-  margin-bottom: 8px;
-}
-
-.tagline {
-  color: #9ca3af;
-}
-
-.disclaimer {
-  font-size: 13px;
-  color: #6b7280;
-  margin-top: 8px;
-}
-
-.card {
-  margin-bottom: 15px;
-  border-radius: 8px;
-  overflow: hidden;
-  background: #16161a;
-}
-
-.accordion {
-  background: #1f1f23;
-  color: #fff;
-  cursor: pointer;
-  padding: 16px;
-  width: 100%;
-  border: none;
-  text-align: left;
-  font-size: 16px;
-  transition: 0.2s;
-}
-
-.accordion:hover {
-  background: #2a2a2f;
-}
-
-.panel {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease-out;
-  padding: 0 16px;
-  background: #16161a;
-}
-
-.panel ul {
-  padding-left: 20px;
-}
-
-.panel p {
-  margin: 10px 0;
-}
-
-.note {
-  color: #9ca3af;
-  font-size: 14px;
-}
-
-footer {
-  margin-top: 40px;
-  text-align: center;
-  font-size: 14px;
-  color: #6b7280;
-}
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    }
+  });
+});
