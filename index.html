@@ -1,1 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perle Contributor Dashboard</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
 
+<header>
+  <div>
+    <h1>Perle Contributor Dashboard</h1>
+    <p class="subtitle">Personal contribution tracker</p>
+  </div>
+  <div class="header-right">
+    <span class="ant-brand">Encrypted Ant 🐜</span>
+    <button id="themeToggle">🌙</button>
+  </div>
+</header>
+
+<main>
+
+<section class="card">
+  <h2>Add Entry</h2>
+  <input type="date" id="date">
+  <input type="number" id="tasks" placeholder="Tasks Completed">
+  <input type="number" id="accuracy" placeholder="Accuracy %">
+  <button onclick="addEntry()">Add Entry</button>
+</section>
+
+<section class="stats-grid">
+  <div class="stat-card">
+    <h3>Total Tasks</h3>
+    <p id="totalTasks">0</p>
+  </div>
+  <div class="stat-card">
+    <h3>Current Streak</h3>
+    <p id="streak">0</p>
+  </div>
+  <div class="stat-card">
+    <h3>Average Accuracy</h3>
+    <p id="avgAccuracy">0%</p>
+  </div>
+</section>
+
+<section class="card">
+  <h3>Streak Progress</h3>
+  <div class="progress-container">
+    <div class="progress-bar" id="streakBar"></div>
+  </div>
+</section>
+
+<section class="card">
+  <h3>Performance Chart</h3>
+  <canvas id="taskChart"></canvas>
+</section>
+
+<section class="card ant-mode" id="antMode">
+  🐜 Ant Mode Activated — Consistency Strong!
+</section>
+
+</main>
+
+<footer>
+  Built for the Perle community by Encrypted Ant 🐜  
+  <br>
+  Unofficial tool. Not affiliated with Perle Labs.
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
