@@ -10,65 +10,83 @@
 
 <div class="wrapper">
 
+  <!-- STEP 1 -->
   <div class="card active" id="step1">
     <h1>Perle Contribution Console</h1>
     <p>Understand quests. Contribute properly. Grow naturally.</p>
-    <button id="startBtn">Start</button>
+    <button class="nextBtn">Start</button>
   </div>
 
+  <!-- STEP 2 -->
   <div class="card hidden" id="step2">
     <h2>What is Perle?</h2>
     <p>Perle is a platform where users complete structured AI tasks through official website quests.</p>
     <button class="nextBtn">Next</button>
   </div>
 
-  <div class="quest-block">
-  <h3>Step 1 — Wallet Setup</h3>
-  <p>Visit official website, connect your Solana wallet and ensure small SOL balance for transaction fees.</p>
-</div>
+  <!-- STEP 3 -->
+  <div class="card hidden" id="step3">
+    <h2>How to Start Quests</h2>
 
-<div class="quest-block">
-  <h3>Step 2 — Marketplace</h3>
-  <p>Open Marketplace section and select an active quest.</p>
-</div>
+    <div class="quest-block">
+      <h3>Step 1 — Wallet Setup</h3>
+      <p>Visit official website, connect your Solana wallet and ensure small SOL balance for transaction fees.</p>
+    </div>
 
-<div class="quest-block">
-  <h3>Step 3 — Follow Instructions</h3>
-  <p>Read instructions carefully before starting. Accuracy matters.</p>
-</div>
+    <div class="quest-block">
+      <h3>Step 2 — Marketplace</h3>
+      <p>Open Marketplace section and select an active quest.</p>
+    </div>
 
-<div class="quest-block">
-  <h3>Step 4 — Submit & Verify</h3>
-  <p>Complete task properly and check Earnings / Badge section for confirmation.</p>
-</div>
+    <div class="quest-block">
+      <h3>Step 3 — Follow Instructions</h3>
+      <p>Read instructions carefully before starting. Accuracy matters.</p>
+    </div>
 
- <div class="card hidden" id="step4">
-  <h2>Community Roles</h2>
+    <div class="quest-block">
+      <h3>Step 4 — Submit & Verify</h3>
+      <p>Complete task properly and check Earnings / Badge section for confirmation.</p>
+    </div>
 
-  <div class="role-box explorer">
-    <h3>Explorer</h3>
-    <p>Entry point for new members.</p>
+    <button class="nextBtn">Next</button>
   </div>
 
-  <div class="role-box navigator">
-    <h3>Navigator</h3>
-    <p>Consistent contributors with meaningful participation.</p>
+  <!-- STEP 4 -->
+  <div class="card hidden" id="step4">
+    <h2>Community Roles</h2>
+
+    <div class="role-box">
+      <h3>Explorer</h3>
+      <p>Entry point for new members.</p>
+    </div>
+
+    <div class="role-box">
+      <h3>Navigator</h3>
+      <p>Consistent contributors with meaningful participation.</p>
+    </div>
+
+    <div class="role-box">
+      <h3>Voyager</h3>
+      <p>Core community members selected by team review.</p>
+    </div>
+
+    <p class="note">Promotions reviewed within first 5 days of each month.</p>
+
+    <button class="nextBtn">Next</button>
   </div>
 
-  <div class="role-box voyager">
-    <h3>Voyager</h3>
-    <p>Core community members selected by team review.</p>
-  </div>
-
-  <p class="note">Promotions reviewed within first 5 days of each month.</p>
-
-  <button class="nextBtn">Next</button>
-</div>
-
+  <!-- STEP 5 -->
   <div class="card hidden" id="step5">
     <h2>Official Updates</h2>
-    <a href="https://discord.gg/joinperle" target="_blank" class="link-btn">Join Official Discord</a>
-    <a href="https://x.com/PerleLabs" target="_blank" class="link-btn">Visit Official X</a>
+
+    <a href="https://discord.gg/joinperle" target="_blank" class="link-btn">
+      Join Official Discord
+    </a>
+
+    <a href="https://x.com/PerleLabs" target="_blank" class="link-btn">
+      Visit Official X
+    </a>
+
     <p>Check #announcements and #important-links inside Discord.</p>
   </div>
 
@@ -82,6 +100,5 @@
 </div>
 
 <script src="script.js"></script>
-
 </body>
 </html>
