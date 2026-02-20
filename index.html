@@ -1,240 +1,283 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Perle Contribution Console</title>
+<title>Perle Contributor Console</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
-body{
-  font-family:Inter,system-ui,sans-serif;
-  height:100vh;
-  overflow:hidden;
-  background:#050816;
-  color:#fff;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Inter, sans-serif;
 }
 
-/* ===== Animated Grid Background ===== */
-.grid{
-  position:fixed;
-  width:200%;
-  height:200%;
+body {
+  height: 100vh;
+  background: #0f172a;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+/* Animated Grid Background */
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
   background-image:
     linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
-  background-size:40px 40px;
-  animation: moveGrid 30s linear infinite;
-  z-index:-2;
+  background-size: 40px 40px;
+  animation: gridMove 20s linear infinite;
 }
 
-@keyframes moveGrid{
-  from{transform:translate(0,0);}
-  to{transform:translate(-200px,-200px);}
+@keyframes gridMove {
+  from { transform: translate(0,0); }
+  to { transform: translate(40px,40px); }
 }
 
-/* Glow light */
-.glow{
-  position:fixed;
-  width:800px;
-  height:800px;
-  background:radial-gradient(circle,#3b82f630,transparent 60%);
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  z-index:-1;
+/* Glow blobs */
+.glow1, .glow2 {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.5;
 }
 
-/* ===== Layout ===== */
-
-.wrapper{
-  width:700px;
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
+.glow1 {
+  background: #00c6ff;
+  top: -200px;
+  left: -200px;
 }
 
-/* Progress */
-.progress{
-  height:6px;
-  background:#111827;
-  border-radius:6px;
-  margin-bottom:30px;
-  overflow:hidden;
+.glow2 {
+  background: #d946ef;
+  bottom: -200px;
+  right: -200px;
 }
 
-.progress-bar{
-  height:100%;
-  width:0%;
-  background:linear-gradient(90deg,#3b82f6,#8b5cf6);
-  transition:0.5s ease;
+/* Card */
+.card {
+  position: relative;
+  width: 600px;
+  padding: 50px;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  box-shadow: 0 0 40px rgba(0,0,0,0.5);
+  animation: float 6s ease-in-out infinite;
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-/* Card Container */
-.cards{
-  display:flex;
-  transition:0.6s cubic-bezier(.4,0,.2,1);
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
-.card{
-  min-width:100%;
-  padding:70px;
-  background:#0f172a;
-  border-radius:30px;
-  box-shadow:
-    0 60px 150px rgba(0,0,0,0.9),
-    inset 0 1px 0 rgba(255,255,255,0.05);
+h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
 }
 
-h1{font-size:34px;margin-bottom:15px;}
-h2{font-size:28px;margin-bottom:25px;}
-p{color:#9ca3af;line-height:1.7;}
-
-button{
-  margin-top:35px;
-  padding:16px 36px;
-  border:none;
-  border-radius:18px;
-  font-weight:600;
-  font-size:14px;
-  background:linear-gradient(135deg,#3b82f6,#8b5cf6);
-  color:white;
-  cursor:pointer;
-  transition:0.3s;
+p {
+  font-size: 15px;
+  line-height: 1.6;
+  opacity: 0.85;
+  margin-bottom: 20px;
 }
 
-button:hover{
-  transform:translateY(-5px);
-  box-shadow:0 20px 50px rgba(59,130,246,0.5);
+ul {
+  margin-bottom: 20px;
+  padding-left: 20px;
+  opacity: 0.85;
 }
 
-.block{
-  background:#111827;
-  padding:22px;
-  border-radius:20px;
-  margin-bottom:18px;
+li {
+  margin-bottom: 8px;
 }
 
-/* Navigation */
-.nav{
-  display:flex;
-  justify-content:space-between;
-  margin-top:30px;
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
 }
 
-.footer{
-  position:fixed;
-  bottom:25px;
-  width:100%;
-  text-align:center;
-  font-size:13px;
-  color:#6b7280;
+button {
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(45deg,#00c6ff,#d946ef);
+  color: white;
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.footer a{
-  color:#60a5fa;
-  text-decoration:none;
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.progress {
+  height: 5px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg,#00c6ff,#d946ef);
+  transition: width 0.4s ease;
+}
+
+.footer {
+  position: absolute;
+  bottom: 20px;
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+.footer a {
+  color: #d946ef;
+  text-decoration: none;
 }
 </style>
 </head>
-
 <body>
 
-<div class="grid"></div>
-<div class="glow"></div>
+<div class="glow1"></div>
+<div class="glow2"></div>
 
-<div class="wrapper">
-
-<div class="progress">
-  <div class="progress-bar" id="progressBar"></div>
-</div>
-
-<div class="cards" id="cards">
-
-  <div class="card">
-    <h1>Perle Contribution Console</h1>
-    <p>Understand quests. Contribute properly. Grow naturally.</p>
-    <div class="nav">
-      <div></div>
-      <button onclick="next()">Start</button>
-    </div>
+<div class="card">
+  <div class="progress">
+    <div class="progress-bar" id="progressBar"></div>
   </div>
 
-  <div class="card">
-    <h2>What is Perle?</h2>
-    <p>Users complete structured AI tasks through official website quests.</p>
-    <div class="nav">
-      <button onclick="prev()">Back</button>
-      <button onclick="next()">Next</button>
-    </div>
-  </div>
+  <div id="content"></div>
 
-  <div class="card">
-    <h2>How to Start Quests</h2>
-    <div class="block"><b>Wallet Setup</b><p>Connect wallet + add SOL.</p></div>
-    <div class="block"><b>Marketplace</b><p>Select active quest.</p></div>
-    <div class="block"><b>Submit</b><p>Check earnings section.</p></div>
-    <div class="nav">
-      <button onclick="prev()">Back</button>
-      <button onclick="next()">Next</button>
-    </div>
+  <div class="buttons">
+    <button id="backBtn" onclick="prevStep()">Back</button>
+    <button id="nextBtn" onclick="nextStep()">Next</button>
   </div>
-
-  <div class="card">
-    <h2>Community Roles</h2>
-    <div class="block"><b>Explorer</b></div>
-    <div class="block"><b>Navigator</b></div>
-    <div class="block"><b>Voyager</b></div>
-    <div class="nav">
-      <button onclick="prev()">Back</button>
-      <button onclick="next()">Next</button>
-    </div>
-  </div>
-
-  <div class="card">
-    <h2>Official Updates</h2>
-    <div class="block"><a href="https://discord.gg/joinperle" target="_blank">Join Discord</a></div>
-    <div class="block"><a href="https://x.com/PerleLabs" target="_blank">Visit X</a></div>
-    <div class="nav">
-      <button onclick="prev()">Back</button>
-      <div></div>
-    </div>
-  </div>
-
-</div>
 </div>
 
 <div class="footer">
-Built by <a href="https://x.com/YOUR_X_HANDLE" target="_blank">The Encrypted Ant 🐜</a>
+  Built by <a href="https://x.com/" target="_blank">The Encrypted Ant</a>
 </div>
 
 <script>
-let current=0;
-const total=5;
-const cards=document.getElementById("cards");
-const progress=document.getElementById("progressBar");
+const steps = [
+{
+title: "Perle Contributor Console",
+content: `
+<p>Navigate quests, earn roles, and contribute with clarity inside the Perle ecosystem.</p>
+<p>This interactive guide explains how Perle works, how quests are completed, how roles are earned, and how to contribute properly.</p>
+`
+},
+{
+title: "What is Perle?",
+content: `
+<p>Perle is a structured AI task platform where contributors complete verified on-chain quests through the official website.</p>
+<ul>
+<li>Wallet connection required</li>
+<li>Small SOL may be needed for fees</li>
+<li>Clear task instructions</li>
+<li>Earnings & badge tracking</li>
+</ul>
+`
+},
+{
+title: "How to Start Quests",
+content: `
+<ul>
+<li>Visit official website (check Discord #important-links)</li>
+<li>Connect Solana wallet</li>
+<li>Add small SOL for fees</li>
+<li>Open Marketplace & select quest</li>
+<li>Follow instructions carefully</li>
+<li>Verify in Earnings / Badge section</li>
+</ul>
+`
+},
+{
+title: "Community Roles",
+content: `
+<ul>
+<li><b>Explorer</b> — Entry role</li>
+<li><b>Navigator</b> — Consistent contributor</li>
+<li><b>Voyager</b> — High-quality verified contributor</li>
+</ul>
+<p>Promotions reviewed during first week of each month.</p>
+`
+},
+{
+title: "Ways to Contribute",
+content: `
+<ul>
+<li>Complete official quests</li>
+<li>Help members in Discord</li>
+<li>Share accurate content on X</li>
+<li>Create guides & threads</li>
+<li>Maintain quality discussions</li>
+</ul>
+`
+},
+{
+title: "Stay Connected",
+content: `
+<p>Follow official channels for updates:</p>
+<div style="display:flex;gap:10px;margin-top:10px;">
+<a href="https://discord.gg/joinperle" target="_blank"><button>Join Discord</button></a>
+<a href="https://x.com/PerleLabs" target="_blank"><button>Visit X</button></a>
+</div>
+`
+}
+];
 
-function update(){
-  cards.style.transform="translateX(-"+(current*100)+"%)";
-  progress.style.width=((current+1)/total*100)+"%";
+let currentStep = 0;
+
+function renderStep() {
+const step = steps[currentStep];
+document.getElementById("content").innerHTML =
+`<h1>${step.title}</h1>${step.content}`;
+
+document.getElementById("backBtn").disabled = currentStep === 0;
+document.getElementById("nextBtn").style.display =
+currentStep === steps.length - 1 ? "none" : "inline-block";
+
+document.getElementById("progressBar").style.width =
+((currentStep + 1) / steps.length) * 100 + "%";
 }
 
-function next(){
-  if(current<total-1){
-    current++;
-    update();
-  }
+function nextStep() {
+if (currentStep < steps.length - 1) {
+currentStep++;
+renderStep();
+}
 }
 
-function prev(){
-  if(current>0){
-    current--;
-    update();
-  }
+function prevStep() {
+if (currentStep > 0) {
+currentStep--;
+renderStep();
+}
 }
 
-update();
+renderStep();
 </script>
 
 </body>
